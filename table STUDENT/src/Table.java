@@ -115,7 +115,6 @@ public class Table extends JFrame{
 
         getContentPane().add(Buttons, BorderLayout.EAST);
         setSize(800,400);
-        //setLocale(CENTER);
         setVisible(true);
 
 
