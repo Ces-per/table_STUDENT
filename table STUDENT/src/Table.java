@@ -81,19 +81,21 @@ public class Table extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 contents.remove(new JScrollPane(table));
+                //contents.setVisible(false);
+                getContentPane().remove(contents);
 
                 ResultSet rs = null;
                 try {
                     rs = stmt.executeQuery("SELECT id, age, klass, \"Familiya\", \"Name_\", \"Otchestvo\"\n" +
                             "\tFROM public.\"ученики\"\n" +
                             "\twhere delet= true;");
-                JTable table1 = new  JTable(Converter.buildTableModel(rs));
-                table1.setColumnSelectionAllowed(false);
-                table1.setRowSelectionAllowed(true);
-                table1.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-                Box contents1 = new Box(BoxLayout.X_AXIS);
-                contents1.add(new JScrollPane(table1));
-                getContentPane().add(contents1);
+                JTable table = new  JTable(Converter.buildTableModel(rs));
+                table.setColumnSelectionAllowed(false);
+                table.setRowSelectionAllowed(true);
+                table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                Box contents = new Box(BoxLayout.X_AXIS);
+                contents.add(new JScrollPane(table));
+                getContentPane().add(contents);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -114,7 +116,7 @@ public class Table extends JFrame{
         getContentPane().add(contents);
 
         getContentPane().add(Buttons, BorderLayout.EAST);
-        setSize(800,400);
+        setSize(1000,450);
         setVisible(true);
 
 
